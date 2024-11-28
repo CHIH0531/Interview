@@ -1,0 +1,61 @@
+<div class="forum-form-container">
+  <h2 class="forum-title">{{ isEditMode ? '修改文章' : '新增文章' }}</h2>
+
+  <!-- 標題輸入欄位 -->
+  <label for="title" class="forum-label">文章標題</label>
+  <input
+    type="text"
+    id="title"
+    [(ngModel)]="newArticle.fArticleName"
+    placeholder="輸入文章標題"
+    required
+    class="forum-input"
+  />
+
+  <!-- 內容輸入欄位 - 替換原本的 textarea 為 p-editor -->
+  <label for="content" class="forum-label">文章內容</label>
+  <p-editor
+    [(ngModel)]="newArticle.fArticleContent"
+    [style]="{
+      height: '200px',
+      'font-size': '16px',
+      'line-height': '1.6'
+    }"
+    styleClass="custom-editor"
+    placeholder="輸入文章內容..."
+  >
+    <ng-template pTemplate="header">
+      <span class="ql-formats">
+        <button type="button" class="ql-bold" aria-label="Bold"></button>
+        <button type="button" class="ql-italic" aria-label="Italic"></button>
+        <button type="button" class="ql-underline" aria-label="Underline"></button>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+      </span>
+      <span class="ql-formats">
+        <button type="button" class="ql-list" value="ordered" aria-label="Ordered List"></button>
+        <button type="button" class="ql-list" value="bullet" aria-label="Unordered List"></button>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-align"></select>
+      </span>
+    </ng-template>
+  </p-editor>
+
+  <!-- 發佈按鈕 -->
+  <div class="button-group">
+    <button (click)="isEditMode ? updateArticle() : createArticle()" class="forum-button">
+      {{ isEditMode ? '更新文章' : '發佈文章' }}
+    </button>
+
+    <button (click)="createDemoArticle()" class="forum-button demo-button">
+      填入範例文章
+    </button>
+
+    <button (click)="cancel()" class="forum-button cancel-button">
+      取消
+    </button>
+  </div>
+</div>

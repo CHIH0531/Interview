@@ -1,0 +1,30 @@
+<div class="forum-page-container">
+  <div class="forum-container">
+    <div class="forum-category-list">
+      <div class="forum-header">
+        <div class="header-left">
+          <h2>類別清單</h2>
+        </div>
+        <div class="header-right">
+          <div class="forum-search-container">
+            <input
+              type="text"
+              [(ngModel)]="searchTerm"
+              placeholder="搜尋類別"
+              (input)="filteredCategories()"
+            />
+          </div>
+          <button class="logout-btn" (click)="logout()">
+            登出
+          </button>
+        </div>
+      </div>
+
+      <ul>
+        <li *ngFor="let category of filteredCategories()" [routerLink]="['/forum/list', category.fCategoryNumber]">
+          {{ category.fCategoryName || '未命名類別' }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

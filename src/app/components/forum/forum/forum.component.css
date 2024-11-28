@@ -1,0 +1,189 @@
+.forum-page-container {
+  display: flex; /* 使用 flexbox 進行佈局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  margin: 20px auto; /* 上下外邊距 20px，自動水平居中 */
+  background-color: white; /* 背景顏色為白色 */
+  width: 100%; /* 寬度 100% */
+  max-width: 1200px; /* 最大寬度 1200px */
+}
+
+.forum-container {
+  width: 100%; /* 寬度 100% */
+  padding: 0 20px; /* 左右內邊距 20px */
+}
+
+.forum-category-list {
+  background-color: white; /* 背景顏色為白色 */
+  padding: 20px; /* 內邊距 20px */
+  border: 1px solid var(--border-color, #a3c5a7); /* 邊框顏色 */
+  border-radius: 8px; /* 邊框圓角 */
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%); /* 陰影效果 */
+  width: 100%; /* 寬度 100% */
+}
+
+.forum-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.forum-category-list h2 {
+  margin: 0; /* 無外邊距 */
+  padding: 10px 20px; /* 上下內邊距 10px，左右 20px */
+  font-size: 32px; /* 字體大小 32px */
+  color: #015e98; /* 字體顏色 */
+  flex-grow: 1; /* 佔據剩餘空間 */
+  text-align: center; /* 文字居中 */
+  position: relative; /* 相對定位 */
+  font-weight: 600; /* 字體粗細 */
+  letter-spacing: 10px; /* 字母間距 */
+}
+
+.forum-category-list h2::after {
+  content: ''; /* 內容為空 */
+  position: absolute; /* 絕對定位 */
+  bottom: 0; /* 底部對齊 */
+  left: 50%; /* 左邊距 50% */
+  transform: translateX(-50%); /* 水平居中 */
+  width: 200px; /* 寬度 200px */
+  height: 3px; /* 高度 3px */
+  background-color: #21aef0; /* 背景顏色 */
+  border-radius: 2px; /* 邊框圓角 */
+}
+
+.forum-search-container {
+  display: flex; /* 使用 flexbox 進行佈局 */
+  align-items: center; /* 垂直居中 */
+}
+
+.forum-search-container input {
+  padding: 8px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  width: 200px;
+  transition: all 0.3s ease;
+}
+
+.forum-search-container input:focus {
+  outline: none;
+  border-color: #00c897;
+  box-shadow: 0 0 0 2px rgba(0, 200, 151, 0.2);
+}
+
+.forum-category-list ul {
+  display: grid; /* 使用 grid 佈局 */
+  grid-template-columns: repeat(4, 1fr); /* 四列等分 */
+  gap: 20px; /* 間距 20px */
+  padding: 20px 0; /* 上下內邊距 20px */
+}
+
+.forum-category-list li {
+  background-color: var(--bg-light, #E8FFF5); /* 背景顏色 */
+  padding: 15px 20px; /* 內邊距 */
+  border: 1px solid var(--border-color, #a3c5a7); /* 邊框顏色 */
+  border-radius: 8px; /* 邊框圓角 */
+  margin: 0; /* 無外邊距 */
+  transition: all 0.3s ease; /* 過渡效果 */
+  cursor: pointer; /* 游標為指針 */
+  height: 80px; /* 高度 80px */
+  display: flex; /* 使用 flexbox 進行佈局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  text-align: center; /* 文字居中 */
+  white-space: nowrap; /* 不換行 */
+  overflow: hidden; /* 隱藏溢出 */
+  text-overflow: ellipsis; /* 文字溢出顯示省略號 */
+  font-size: 16px; /* 字體大小 */
+  background: var(--bg-light, #E8FFF5) !important; /* 背景顏色 */
+}
+
+.forum-category-list li:last-child {
+  border-bottom: 1px solid var(--border-color, #a3c5a7); /* 最後一個項目的底部邊框 */
+}
+
+.forum-category-list li:hover {
+  background-color: #019858 !important; /* 滑鼠懸停時背景顏色 */
+  color: white; /* 字體顏色 */
+  transform: translateY(-2px); /* 向上移動 2px */
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%); /* 陰影效果 */
+}
+
+@media screen and (max-width: 1200px) {
+  .forum-category-list ul {
+    grid-template-columns: repeat(3, 1fr); /* 三列等分 */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .forum-category-list ul {
+    grid-template-columns: repeat(2, 1fr); /* 兩列等分 */
+  }
+
+  .forum-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .forum-search-container input {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .forum-category-list ul {
+    grid-template-columns: 1fr; /* 單列 */
+  }
+
+  .forum-category-list li {
+    height: 60px; /* 高度 60px */
+  }
+}
+
+/* 新增的樣式 */
+.forum-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logout-btn {
+  padding: 8px 24px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logout-btn:hover {
+  background-color: #ff7875;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn i {
+  font-size: 16px;
+}

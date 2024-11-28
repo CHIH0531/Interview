@@ -1,0 +1,197 @@
+.forum-form-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #a3c5a7;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.forum-title {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.forum-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+  font-size: 16px;
+}
+
+.forum-input,
+.forum-textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #a3c5a7;
+  border-radius: 4px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+.forum-input:focus,
+.forum-textarea:focus {
+  outline: none;
+  border-color: #019858;
+  box-shadow: 0 0 8px rgba(1, 152, 88, 0.2);
+}
+
+.forum-textarea {
+  resize: vertical;
+  min-height: 300px;
+}
+
+.forum-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #E8FFF5;
+  color: #019858;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid #019858;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s;
+  margin-top: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.forum-button:hover {
+  background-color: #019858;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(1, 152, 88, 0.2);
+}
+
+.cancel-button {
+  background-color: #ffd0d0;
+  color: #ff3737;
+  border: 1px solid #ff3737;
+}
+
+.cancel-button:hover {
+  background-color: #ff3737;
+  color: #ffd0d0;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(255, 55, 55, 0.2);
+}
+
+/* PrimeNG 編輯器樣式 - 增加選擇器優先級 */
+:host ::ng-deep .p-editor-container .ql-container {
+  font-size: 16px !important;
+}
+
+:host ::ng-deep .p-editor-container .ql-editor {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  min-height: 250px !important;
+}
+
+/* 針對編輯器內所有文字元素 */
+:host ::ng-deep .p-editor-container .ql-editor * {
+  font-size: inherit !important;
+}
+
+/* 針對佔位符文字 */
+:host ::ng-deep .p-editor-container .ql-editor.ql-blank::before {
+  font-size: 16px !important;
+  font-style: italic;
+  color: #666;
+}
+
+/* 特定元素樣式 */
+:host ::ng-deep .p-editor-container .ql-editor {
+  p, div, span, li {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+  }
+
+  h1 {
+    font-size: 24px !important;
+  }
+
+  h2 {
+    font-size: 20px !important;
+  }
+
+  h3 {
+    font-size: 18px !important;
+  }
+}
+
+/* 工具列樣式 */
+:host ::ng-deep .p-editor-container .ql-toolbar {
+  .ql-picker {
+    font-size: 16px !important;
+  }
+  z-index: 0;
+}
+
+/* 響應式設計調整 */
+@media screen and (max-width: 768px) {
+  .forum-form-container {
+    width: 95%;
+    margin: 15px auto;
+    padding: 15px;
+  }
+
+  .forum-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* 調整編輯器容器的間距 */
+:host ::ng-deep .p-editor-container {
+  margin-bottom: 60px;
+}
+
+.demo-button {
+  background-color: #79ccef !important;
+  margin-left: 10px;
+}
+
+.demo-button:hover {
+  background-color: #79ccef !important;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.forum-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.demo-button {
+  background-color: #E6F3FF;
+  color: #0066CC;
+  border: 1px solid #0066CC;
+}
+
+.demo-button:hover {
+  background-color: #CCE6FF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,404 @@
+.forum-list-container {
+  max-width: 1200px; /* 設定容器的最大寬度 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 20px; /* 內邊距 */
+}
+
+.forum-list-container h1 {
+  font-size: 24px; /* 標題字體大小 */
+  color: #333; /* 標題字體顏色 */
+  margin-bottom: 20px; /* 下邊距 */
+  position: relative; /* 相對定位，用於::after裝飾 */
+  padding-bottom: 10px; /* 下內邊距 */
+  text-align: center; /* 文字居中 */
+  font-weight: 600; /* 字體粗細 */
+}
+
+/* 添加標題底線裝飾 */
+.forum-list-container h1::after {
+  content: ''; /* 空內容 */
+  position: absolute; /* 絕對定位 */
+  bottom: 0; /* 底部對齊 */
+  left: 50%; /* 左邊距 50% */
+  transform: translateX(-50%); /* 水平居中 */
+  width: 250px; /* 寬度 */
+  height: 3px; /* 高度 */
+  background-color: #333; /* 背景顏色 */
+  border-radius: 2px; /* 邊框圓角 */
+}
+
+.forum-error-message {
+  color: red; /* 錯誤訊息字體顏色 */
+  font-weight: bold; /* 字體粗細 */
+  margin-bottom: 20px; /* 下邊距 */
+  padding: 10px; /* 內邊距 */
+  border-radius: 5px; /* 邊框圓角 */
+  background-color: rgba(255, 0, 0, 0.1); /* 背景顏色 */
+}
+
+.forum-card-container {
+  display: grid; /* 使用 grid 佈局 */
+  grid-template-columns: repeat(auto-fill, minmax(209px, 1fr)); /* 自動填充列 */
+  gap: 28px; /* 間距 */
+  padding: 10px; /* 內邊距 */
+}
+
+.forum-card {
+  background-color: white; /* 背景顏色 */
+  border-radius: 12px;  /* 增加圓角 */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);  /* 優化陰影 */
+  padding: 20px;  /* 增加內邊距 */
+  transition: all 0.3s ease; /* 過渡效果 */
+  width: 100%; /* 寬度 */
+  aspect-ratio: 1 / 1; /* 寬高比 */
+  display: flex; /* 使用 flexbox 佈局 */
+  flex-direction: column; /* 垂直排列 */
+  justify-content: space-between; /* 兩端對齊 */
+  border: 1px solid #eee;  /* 添加淺色邊框 */
+  transition: background-color 0.3s ease; /* 背景顏色過渡效果 */
+}
+
+.forum-card:hover {
+  transform: translateY(-5px); /* 向上移動 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); /* 增強陰影 */
+  border: 2px solid #4CAF50; /* 改變邊框顏色 */
+}
+
+.forum-card h2 {
+  font-size: 20px;  /* 增加標題字體大小 */
+  color: #333; /* 字體顏色 */
+  margin: 0 0 15px;  /* 增加下方間距 */
+  padding-bottom: 15px; /* 下內邊距 */
+  border-bottom: 1px dashed #ddd; /* 底部虛線邊框 */
+  font-weight: 600; /* 字體粗細 */
+  line-height: 1.5; /* 行高 */
+}
+
+.forum-card p {
+  font-size: 16px;  /* 增加內文字體大小 */
+  color: #666; /* 字體顏色 */
+  margin: 10px 0;  /* 增加上下間距 */
+  line-height: 1.6; /* 行高 */
+}
+
+.forum-button {
+  display: inline-block; /* 行內區塊 */
+  padding: 8px 16px;  /* 減少內邊距 */
+  background-color: #E8FFF5; /* 背景顏色 */
+  color: #019858; /* 字體顏色 */
+  border-radius: 6px; /* 邊框圓角 */
+  text-align: center; /* 文字居中 */
+  text-decoration: none; /* 無下劃線 */
+  transition: all 0.3s ease; /* 過渡效果 */
+  font-weight: 500; /* 字體粗細 */
+  font-size: 14px;  /* 減小字體大小 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 陰影效果 */
+  flex: 0 1 auto;  /* 修改 flex 屬性 */
+  min-width: 80px;  /* 設定最小寬度 */
+  margin: 0;  /* 移除上方邊距 */
+}
+
+.forum-button:not(.return-button) {
+  border: 1px solid #019858; /* 邊框顏色 */
+}
+
+.forum-button:hover {
+  background-color: #019858; /* 滑鼠懸停時背景顏色 */
+  color: #E8FFF5; /* 字體顏色 */
+  transform: translateY(-2px); /* 向上移動 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增強陰影 */
+}
+
+.forum-no-articles-message {
+  text-align: center; /* 文字居中 */
+  font-style: italic; /* 斜體 */
+  color: #777; /* 字體顏色 */
+}
+
+/* 響應式設計調整 */
+@media screen and (max-width: 768px) {
+  .forum-card h2 {
+    font-size: 18px;  /* 在小螢幕上稍微縮小標題 */
+  }
+
+  .forum-card p {
+    font-size: 14px;  /* 在小螢幕上稍微縮小內文字體 */
+  }
+}
+
+/* 分頁器樣式 */
+:host ::ng-deep .p-paginator {
+  background: transparent; /* 背景透明 */
+  border: none; /* 無邊框 */
+  padding: 20px 0; /* 上下內邊距 */
+  display: flex; /* 使用 flexbox 佈局 */
+  justify-content: center; /* 水平居中 */
+  margin-top: 30px; /* 上邊距 */
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+  min-width: 40px; /* 最小寬度 */
+  height: 40px; /* 高度 */
+  margin: 0 5px; /* 左右間距 */
+  border-radius: 8px; /* 邊框圓角 */
+  background-color: #E8FFF5; /* 背景顏色 */
+  color: #019858; /* 字體顏色 */
+  border: 1px solid #019858; /* 邊框顏色 */
+  transition: all 0.3s ease; /* 過渡效果 */
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background-color: #019858; /* 滑鼠懸停時背景顏色 */
+  color: white; /* 字體顏色 */
+  transform: translateY(-2px); /* 向上移動 */
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #019858; /* 高亮背景顏色 */
+  color: white; /* 字體顏色 */
+  box-shadow: 0 2px 4px rgba(1, 152, 88, 0.2); /* 陰影效果 */
+}
+
+:host ::ng-deep .p-paginator .p-paginator-first,
+:host ::ng-deep .p-paginator .p-paginator-prev,
+:host ::ng-deep .p-paginator .p-paginator-next,
+:host ::ng-deep .p-paginator .p-paginator-last {
+  min-width: 40px; /* 最小寬度 */
+  height: 40px; /* 高度 */
+  margin: 0 5px; /* 左右間距 */
+  border-radius: 8px; /* 邊框圓角 */
+  background-color: #E8FFF5; /* 背景顏色 */
+  color: #019858; /* 字體顏色 */
+  border: 1px solid #019858; /* 邊框顏色 */
+  transition: all 0.3s ease; /* 過渡效果 */
+}
+
+:host ::ng-deep .p-paginator .p-paginator-first:hover,
+:host ::ng-deep .p-paginator .p-paginator-prev:hover,
+:host ::ng-deep .p-paginator .p-paginator-next:hover,
+:host ::ng-deep .p-paginator .p-paginator-last:hover {
+  background-color: #019858; /* 滑鼠懸停時背景顏色 */
+  color: white; /* 字體顏色 */
+  transform: translateY(-2px); /* 向上移動 */
+}
+
+:host ::ng-deep .p-paginator .p-dropdown {
+  margin-left: 10px; /* 左邊距 */
+  height: 40px; /* 高度 */
+  border-radius: 8px; /* 邊框圓角 */
+  border-color: #019858; /* 邊框顏色 */
+}
+
+:host ::ng-deep .p-paginator .p-dropdown:hover {
+  border-color: #019858; /* 滑鼠懸停時邊框顏色 */
+}
+
+:host ::ng-deep .p-paginator .p-paginator-current {
+  margin: 0 15px; /* 左右間距 */
+  color: #666; /* 字體顏色 */
+  font-size: 14px; /* 字體大小 */
+}
+
+/* 響應式設計 */
+@media screen and (max-width: 768px) {
+  :host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page,
+  :host ::ng-deep .p-paginator .p-paginator-first,
+  :host ::ng-deep .p-paginator .p-paginator-prev,
+  :host ::ng-deep .p-paginator .p-paginator-next,
+  :host ::ng-deep .p-paginator .p-paginator-last {
+    min-width: 35px; /* 最小寬度 */
+    height: 35px; /* 高度 */
+    margin: 0 2px; /* 左右間距 */
+  }
+
+  :host ::ng-deep .p-paginator .p-paginator-current {
+    display: none; /* 隱藏當前頁面報告 */
+  }
+}
+
+.forum-card div[innerHTML] {
+  overflow: hidden; /* 隱藏溢出 */
+  word-break: break-word; /* 單詞換行 */
+  /* 確保內容不會破壞卡片布局 */
+  max-width: 100%; /* 最大寬度 */
+}
+
+/* 按鈕容器樣式 */
+.article-actions {
+  display: flex; /* 使用 flexbox 佈局 */
+  flex-direction: column; /* 垂直排列 */
+  gap: 10px; /* 間距 */
+  margin-top: 15px; /* 上邊距 */
+}
+
+/* 編輯和刪除按鈕的容器 */
+.admin-actions {
+  display: grid; /* 使用 grid 佈局 */
+  grid-template-columns: 1fr 1fr; /* 兩列等分 */
+  gap: 10px; /* 間距 */
+  width: 100%; /* 寬度 */
+}
+
+/* 按鈕基本樣式 */
+.read-more-btn,
+.edit-btn,
+.delete-btn {
+  display: inline-block; /* 行內區塊 */
+  padding: 8px 16px; /* 內邊距 */
+  border: none; /* 無邊框 */
+  border-radius: 6px; /* 邊框圓角 */
+  text-align: center; /* 文字居中 */
+  text-decoration: none; /* 無下劃線 */
+  transition: all 0.3s ease; /* 過渡效果 */
+  font-weight: 500; /* 字體粗細 */
+  font-size: 14px; /* 字體大小 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 陰影效果 */
+  cursor: pointer; /* 游標為指針 */
+}
+
+/* 閱讀更多按鈕 - 佔據整行 */
+.read-more-btn {
+  background-color: #E8FFF5; /* 背景顏色 */
+  color: #019858; /* 字體顏色 */
+  border: 1px solid #019858; /* 邊框顏色 */
+  width: 100%; /* 寬度 */
+}
+
+.read-more-btn:hover {
+  background-color: #019858; /* 滑鼠懸停時背景顏色 */
+  color: #E8FFF5; /* 字體顏色 */
+  transform: translateY(-2px); /* 向上移動 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增強陰影 */
+}
+
+/* 編輯按鈕 */
+.edit-btn {
+  background-color: #FFF3E8; /* 背景顏色 */
+  color: #FF8040; /* 字體顏色 */
+  border: 1px solid #FF8040; /* 邊框顏色 */
+}
+
+.edit-btn:hover {
+  background-color: #FF8040; /* 滑鼠懸停時背景顏色 */
+  color: #FFF3E8; /* 字體顏色 */
+  transform: translateY(-2px); /* 向上移動 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增強陰影 */
+}
+
+/* 刪除按鈕 */
+.delete-btn {
+  background-color: #FFE8E8; /* 背景顏色 */
+  color: #FF4040; /* 字體顏色 */
+  border: 1px solid #FF4040; /* 邊框顏色 */
+}
+
+.delete-btn:hover {
+  background-color: #FF4040; /* 滑鼠懸停時背景顏色 */
+  color: #FFE8E8; /* 字體顏色 */
+  transform: translateY(-2px); /* 向上移動 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增強陰影 */
+}
+
+/* 響應式設計 */
+@media screen and (max-width: 768px) {
+  .article-actions {
+    flex-direction: column; /* 垂直排列 */
+    gap: 8px; /* 間距 */
+  }
+
+  .read-more-btn,
+  .edit-btn,
+  .delete-btn {
+    width: 100%; /* 寬度 */
+    padding: 10px; /* 內邊距 */
+    font-size: 13px; /* 字體大小 */
+  }
+}
+
+.loading {
+  opacity: 0.7; /* 透明度 */
+}
+
+.loading::after {
+  content: ''; /* 空內容 */
+  display: inline-block; /* 行內區塊 */
+  width: 10px; /* 寬度 */
+  height: 10px; /* 高度 */
+  margin-left: 5px; /* 左邊距 */
+  border: 2px solid #f3f3f3; /* 邊框顏色 */
+  border-top: 2px solid #3498db; /* 上邊框顏色 */
+  border-radius: 50%; /* 邊框圓角 */
+  animation: spin 1s linear infinite; /* 旋轉動畫 */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); } /* 初始旋轉角度 */
+  100% { transform: rotate(360deg); } /* 完成旋轉角度 */
+}
+
+/* 新文章高亮效果 */
+@keyframes highlightFade {
+  0% { background-color: rgba(100, 149, 237, 0.3); } /* 初始背景顏色 */
+  100% { background-color: transparent; } /* 完成背景顏色 */
+}
+
+.highlight-new-article {
+  animation: highlightFade 3s ease-out; /* 高亮動畫 */
+}
+
+/* 添加按鈕容器樣式 */
+.button-container {
+  display: flex; /* 使用 flexbox 佈局 */
+  gap: 15px; /* 間距 */
+  margin: 20px 0; /* 上下邊距 */
+}
+
+/* 返回按鈕特殊樣式 */
+.return-button {
+  background-color: transparent; /* 背景透明 */
+  border: 2px solid #6495ed; /* 邊框顏色 */
+  color: #6495ed; /* 字體顏色 */
+}
+
+.return-button:hover {
+  background-color: #6495ed; /* 滑鼠懸停時背景顏色 */
+  color: white; /* 字體顏色 */
+}
+
+/* 響應式設計 */
+@media screen and (max-width: 768px) {
+  .button-container {
+    flex-direction: column; /* 垂直排列 */
+    align-items: stretch; /* 拉伸對齊 */
+  }
+
+  .forum-button {
+    max-width: none; /* 無最大寬度限制 */
+  }
+}
+
+.highlight-new-article {
+  animation: highlightNew 3s ease-out; /* 新文章高亮動畫 */
+}
+
+.highlight-edited-article {
+  animation: highlightEdit 3s ease-out; /* 編輯文章高亮動畫 */
+}
+
+@keyframes highlightNew {
+  0% {
+    background-color: rgba(100, 149, 237, 0.3);  /* 使用淺藍色 */
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes highlightEdit {
+  0% {
+    background-color: rgba(144, 238, 144, 0.3);  /* 使用淺綠色 */
+  }
+  100% {
+    background-color: transparent;
+  }
+}

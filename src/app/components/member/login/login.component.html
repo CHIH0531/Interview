@@ -1,0 +1,51 @@
+<section class="login-container">
+  <div class="login-card">
+
+
+    <h4 class="login-title">登入</h4>
+    <p class="welcome-text">歡迎回來！</p>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="mb-4">
+        <label class="block text-sm mb-1">Email帳號</label>
+        <input
+          type="email"
+          [(ngModel)]="memberLogin.fEmail"
+          name="email"
+          class="form-input"
+          placeholder="請輸入Email"
+          required>
+        <span class="text-red-500 text-sm">{{ emailError }}</span>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm mb-1">密碼</label>
+        <div class="password-field">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="memberLogin.fPassword"
+            name="password"
+            class="form-input"
+            placeholder="請輸入密碼"
+            required>
+          <span class="password-toggle" (click)="togglePassword()">
+            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </span>
+        </div>
+        <span class="text-red-500 text-sm">{{ passwordError }}</span>
+      </div>
+
+
+
+      <button type="submit" class="login-btn">登入</button>
+
+      <div class="demo-links mt-4">
+        <a href="javascript:void(0)" (click)="fillDemoAccount()">Demo marco</a>
+        <a href="javascript:void(0)" (click)="fillDemoAccount2()">Demo Jesse</a>
+
+      </div>
+    </form>
+
+
+  </div>
+</section>

@@ -1,0 +1,75 @@
+<div class="forum-list-container">
+  <h1>{{ categoryName }} - 文章列表</h1>
+
+  <div *ngIf="errorMessage" class="forum-error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- 搜尋容器 -->
+  <div class="forum-search-container">
+    <input
+      id="search"
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="搜尋文章"
+      (input)="filterArticles($event)"
+      (compositionstart)="$event.stopPropagation()"
+      (compositionend)="filterArticles($event)"
+    />
+  </div>
+
+  <!-- 修改按鈕區域 -->
+  <div class="button-container">
+    <button [routerLink]="['/forum/backup', fCategoryNumber]" class="forum-button">新增文章</button>
+    <button [routerLink]="['/forum']" class="forum-button return-button">返回討論區首頁</button>
+  </div>
+
+  <div class="forum-card-container" *ngIf="!errorMessage">
+    <div class="forum-card" *ngFor="let article of pagedArticles" [attr.data-article-id]="article.fArticleID">
+      <h2>{{ article.fArticleName }}</h2>
+      <div [innerHTML]="sanitizeHtml(limitText(article.fArticleContent))"></div>
+      <p>
+        作者:
+        <span [class.loading]="memberLoading">
+          {{ getMemberName(article.fMemberID) }}
+        </span>
+        | 發布時間: {{ article.fCreatedAt | date:'yyyy/MM/dd HH:mm:ss' }}
+      </p>
+
+      <div class="article-actions">
+        <!-- 管理按鈕放在上方 -->
+        <ng-container *ngIf="isArticleAuthor(article.fMemberID)">
+          <div class="admin-actions">
+            <button class="edit-btn" [routerLink]="['/forum/backup', fCategoryNumber, article.fArticleID]">
+              修改
+            </button>
+            <button class="delete-btn" (click)="deleteArticle(article.fArticleID)">
+              刪除
+            </button>
+          </div>
+        </ng-container>
+
+        <!-- 閱讀更多按鈕放在下方 -->
+        <button class="read-more-btn" [routerLink]="['/forum/detail', article.fArticleID]">
+          閱讀更多
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 添加分頁器 -->
+  <p-paginator
+    [rows]="pageSize"
+    [totalRecords]="filteredArticles.length"
+    [rowsPerPageOptions]="[8, 16, 24]"
+    (onPageChange)="onPageChange($event)"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="第 {first} 到 {last} 筆，共 {totalRecords} 筆"
+    [first]="(currentPage-1) * pageSize">
+  </p-paginator>
+
+  <div *ngIf="!filteredArticles.length && !errorMessage" class="forum-no-articles-message">
+    沒有找到任何文章。
+  </div>
+</div>

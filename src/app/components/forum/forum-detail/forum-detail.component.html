@@ -1,0 +1,117 @@
+<div *ngIf="article" class="forum-detail-container">
+  <!-- 文章標題和內容合併在一起 -->
+  <div class="forum-detail-header">
+    <h2>{{ article.fArticleName }}</h2>
+    <div class="forum-detail-body">
+      <div class="ql-snow">
+        <div class="ql-editor" [innerHTML]="sanitizeHtml(article!.fArticleContent)"></div>
+      </div>
+    </div>
+    <!-- 將作者資訊移到這裡，並添加新的 CSS class -->
+    <p class="article-info-footer">
+      作者: {{ authorName || '載入中...' }} |
+      發布時間: {{ article.fCreatedAt | date:'yyyy/MM/dd HH:mm:ss' }} |
+      <a class="add-comment-link" (click)="scrollToCommentSection()">新增留言</a>
+    </p>
+  </div>
+
+  <!-- 留言列表 -->
+  <div class="forum-messages">
+    <h3>留言列表</h3>
+    <div *ngFor="let message of pagedMessages; let i = index" class="message-item" [attr.data-message-id]="message.fMessageId">
+      <span class="message-floor">{{ (currentPage - 1) * pageSize + i + 1 }}樓</span>
+      <div class="message-content">
+        <div class="ql-snow">
+          <div class="ql-editor" [innerHTML]="sanitizeHtml(message.fMessageContent)"></div>
+        </div>
+      </div>
+      <div class="message-footer">
+        <span>
+          留言者: {{ messageAuthors[message.fMemberId] || '載入中...' }} |
+          時間: {{ message.fCreatedAt | date:'yyyy/MM/dd HH:mm:ss' }}
+          <ng-container *ngIf="isMessageAuthor(message.fMemberId)">
+            <a class="edit-message-link" (click)="editMessage(message)">| 編輯</a>
+            <a class="delete-message-link" (click)="deleteMessage(message.fMessageId)">| 刪除</a>
+          </ng-container>
+        </span>
+      </div>
+    </div>
+
+    <!-- 分頁器 -->
+   <!-- 分頁器 -->
+<p-paginator
+[rows]="pageSize"
+[totalRecords]="messages.length"
+[rowsPerPageOptions]="[5, 10, 20]"
+(onPageChange)="onMessagePageChange($event)"
+[showCurrentPageReport]="true"
+currentPageReportTemplate="第 {first} 到 {last} 筆，共 {totalRecords} 筆"
+[first]="(currentPage-1) * pageSize">
+</p-paginator>
+    <p *ngIf="messages.length === 0" class="no-messages">
+      目前還沒有留言
+    </p>
+  </div>
+
+  <!-- 新增留言區域 -->
+  <div class="forum-comment-section">
+    <h3>{{ isEditing ? '編輯留言' : '新增留言' }}</h3>
+
+    <p-editor
+      [(ngModel)]="newMessageContent"
+      [style]="{
+        height: '200px',
+        'font-size': '16px',
+        'line-height': '1.6'
+      }"
+      styleClass="custom-editor"
+      [placeholder]="isEditing ? '編輯留言內容...' : '輸入留言內容...'"
+      [disabled]="isSubmitting"
+      (onTextChange)="handleTextChange($event)">
+      <ng-template pTemplate="header">
+        <span class="ql-formats">
+          <button type="button" class="ql-bold" aria-label="Bold"></button>
+          <button type="button" class="ql-italic" aria-label="Italic"></button>
+          <button type="button" class="ql-underline" aria-label="Underline"></button>
+        </span>
+        <span class="ql-formats">
+          <select class="ql-color"></select>
+          <select class="ql-background"></select>
+        </span>
+        <span class="ql-formats">
+          <button type="button" class="ql-list" value="ordered" aria-label="Ordered List"></button>
+          <button type="button" class="ql-list" value="bullet" aria-label="Unordered List"></button>
+        </span>
+        <span class="ql-formats">
+          <select class="ql-align"></select>
+        </span>
+      </ng-template>
+    </p-editor>
+
+    <div class="editor-buttons">
+      <button
+        *ngIf="isEditing"
+        (click)="cancelEdit()"
+        class="forum-detail-cancel-btn">
+        取消編輯
+      </button>
+      <button
+        *ngIf="!isEditing"
+        (click)="createDemoMessage()"
+        class="forum-detail-demo-btn">
+        填入範例留言
+      </button>
+      <button
+        (click)="submitMessage()"
+        class="forum-detail-submit-btn"
+        [disabled]="isSubmitDisabled()">
+        {{ isSubmitting ? '提交中...' : (isEditing ? '更新留言' : '提交留言') }}
+      </button>
+    </div>
+  </div>
+
+  <!-- 返回按鈕 -->
+  <div class="forum-detail-footer">
+    <button (click)="goBack()" class="forum-detail-back-btn">返回列表</button>
+  </div>
+</div>

@@ -1,0 +1,636 @@
+/* 主容器樣式 */
+.forum-detail-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 30px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* 文章標題區域 */
+.forum-detail-header {
+  position: relative;
+  margin-bottom: 40px;
+  padding: 20px;
+  padding-bottom: 40px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.forum-detail-header h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.article-info {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* 文章內容區域 */
+.forum-detail-body {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  line-height: 1.8;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* 針對編輯器內容的樣式 */
+:host ::ng-deep .forum-detail-body {
+  /* 保留原有的基本樣式 */
+  font-size: 16px;
+  line-height: 1.6;
+
+  /* 確保顏色和樣式能正確顯示 */
+  span[style*="color"],
+  span[style*="background-color"] {
+    color: inherit;
+    background-color: inherit;
+  }
+
+  /* 保持原有的格式設定 */
+  .ql-align-center {
+    text-align: center;
+  }
+
+  .ql-align-right {
+    text-align: right;
+  }
+
+  .ql-align-justify {
+    text-align: justify;
+  }
+
+  /* 列表樣式 */
+  ul {
+    list-style-type: disc !important;
+    padding-left: 20px !important;
+  }
+
+  ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+  }
+
+  /* 文字格式 */
+  strong, .ql-bold {
+    font-weight: bold;
+  }
+
+  em, .ql-italic {
+    font-style: italic;
+  }
+
+  u, .ql-underline {
+    text-decoration: underline;
+  }
+
+  /* 段落間距 */
+  p {
+    margin: 0.5em 0;
+  }
+
+  /* 移除這些覆蓋顏色的樣式 */
+  /*[style*="color"] {
+    color: inherit !important;
+  }
+
+  [style*="background"] {
+    background-color: inherit !important;
+  }*/
+}
+
+/* 確保內容區域有正確的寬度和邊距 */
+.forum-detail-body {
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* 確保內聯樣式可以正確顯示 */
+:host ::ng-deep .forum-detail-body [style] {
+  all: revert;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* 留言列表區域 */
+.forum-messages {
+  margin-top: 40px;
+}
+
+.forum-messages h3 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #E8FFF5;
+}
+
+.message-item {
+  position: relative;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  padding-bottom: 40px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.message-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.message-content {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.message-info {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 13px;
+  color: #888;
+}
+
+.message-floor {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.message-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+.delete-message-link {
+  color: #E6005C;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.delete-message-link:hover {
+  color: #cc0052;
+  text-decoration: underline;
+}
+
+/* 新增留言區域 */
+.forum-comment-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #E8FFF5;
+}
+
+.forum-comment-section h3 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.comment-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #444;
+  transition: all 0.3s ease;
+  resize: vertical;
+  margin-bottom: 20px;
+}
+
+.comment-textarea:focus {
+  outline: none;
+  border-color: #019858;
+  box-shadow: 0 0 0 3px rgba(1, 152, 88, 0.3);
+}
+
+.forum-detail-submit-btn {
+  padding: 10px 20px;
+  background-color: #E8FFF5;
+  color: #019858;
+  font-size: 16px;
+  border: 1px solid #019858;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.forum-detail-submit-btn:hover {
+  background-color: #019858;
+  color: white;
+}
+
+.forum-detail-submit-btn:disabled {
+  background-color: #cccccc;
+  border-color: #999999;
+  cursor: not-allowed;
+}
+
+.comment-textarea:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+/* 分頁器樣式 */
+:host ::ng-deep .p-paginator {
+  background: transparent;
+  border: none;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+  min-width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  border-radius: 8px;
+  background-color: #E8FFF5;
+  color: #019858;
+  border: 1px solid #019858;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #019858;
+  color: white;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-first,
+:host ::ng-deep .p-paginator .p-paginator-prev,
+:host ::ng-deep .p-paginator .p-paginator-next,
+:host ::ng-deep .p-paginator .p-paginator-last {
+  min-width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  border-radius: 8px;
+  background-color: #E8FFF5;
+  color: #019858;
+  border: 1px solid #019858;
+}
+
+:host ::ng-deep .p-paginator .p-dropdown {
+  margin-left: 10px;
+  height: 40px;
+  border-radius: 8px;
+  border-color: #019858;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-current {
+  margin: 0 15px;
+  color: #666;
+}
+
+/* 響應式設計 */
+@media screen and (max-width: 768px) {
+  .article-info {
+    position: static;
+    margin-top: 10px;
+    text-align: right;
+  }
+
+  .message-info {
+    position: static;
+    margin-top: 10px;
+    text-align: right;
+  }
+
+  .message-content {
+    margin-top: 0;
+  }
+
+  .message-floor {
+    position: static;
+    display: block;
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  .message-footer {
+    position: static;
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+  }
+
+  .message-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .message-item {
+    padding-bottom: 20px;
+  }
+}
+
+/* 編輯器樣式 */
+:host ::ng-deep .p-editor-container {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+}
+
+:host ::ng-deep .p-editor-container .p-editor-toolbar {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px;
+}
+
+:host ::ng-deep .p-editor-container .p-editor-content {
+  padding: 15px;
+  min-height: 200px;
+}
+
+:host ::ng-deep .p-editor-container .p-editor-content.ql-disabled {
+  background-color: #f5f5f5;
+}
+
+:host ::ng-deep .ql-toolbar button {
+  width: 28px;
+  height: 28px;
+  padding: 5px;
+  margin: 0 2px;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .ql-toolbar button:hover {
+  background-color: #e9ecef;
+}
+
+:host ::ng-deep .ql-toolbar .ql-formats {
+  margin-right: 8px;
+}
+
+:host ::ng-deep .ql-snow.ql-toolbar button.ql-active,
+:host ::ng-deep .ql-snow.ql-toolbar button:focus,
+:host ::ng-deep .ql-snow.ql-toolbar button:hover {
+  color: #019858;
+}
+
+:host ::ng-deep .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+:host ::ng-deep .ql-snow.ql-toolbar button:focus .ql-stroke,
+:host ::ng-deep .ql-snow.ql-toolbar button:hover .ql-stroke {
+  stroke: #019858;
+}
+
+:host ::ng-deep .ql-snow.ql-toolbar button.ql-active .ql-fill,
+:host ::ng-deep .ql-snow.ql-toolbar button:focus .ql-fill,
+:host ::ng-deep .ql-snow.ql-toolbar button:hover .ql-fill {
+  fill: #019858;
+}
+
+/* 留言內容的富文本樣式 */
+.message-content ::ng-deep {
+  /* 基本樣式 */
+  ul, ol {
+    padding-left: 20px;
+    margin: 10px 0;
+  }
+
+  .ql-align-center {
+    text-align: center;
+  }
+
+  .ql-align-right {
+    text-align: right;
+  }
+
+  .ql-align-justify {
+    text-align: justify;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  /* 保持連結樣式 */
+  a {
+    color: #019858;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+/* 調整留言內容的基本樣式 */
+.message-content {
+  margin-top: 25px;
+  line-height: 1.6;
+}
+
+.character-count {
+    margin-top: 5px;
+    text-align: right;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* 修改文章資訊底部樣式 */
+.article-info-footer {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  margin: 0;
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic;
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+}
+
+/* 新增留言連結樣式 */
+.add-comment-link {
+  color: #019858;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.add-comment-link:hover {
+  color: #017a46;
+  text-decoration: underline;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+  .article-info-footer {
+    position: static;
+    text-align: right;
+    margin-top: 15px;
+    padding-right: 0;
+  }
+}
+
+/* 樓層和留言者資訊的容器 */
+.message-header {
+  position: relative;
+  background-color: #f8f9fa;  /* 淺灰色背景 */
+  border-radius: 6px;
+  padding: 8px 15px;
+  margin-bottom: 15px;
+}
+
+.message-floor {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.message-footer {
+  position: absolute;
+  bottom: 8px;
+  right: 15px;
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic;
+}
+
+.message-content {
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+/* 響應式設計 */
+@media screen and (max-width: 768px) {
+  .message-header {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+
+  .message-floor {
+    position: static;
+    display: block;
+    text-align: right;
+    margin-bottom: 5px;
+  }
+
+  .message-footer {
+    position: static;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+  }
+}
+
+.edit-message-link {
+  color: #019858;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.edit-message-link:hover {
+  color: #017a46;
+  text-decoration: underline;
+}
+
+.editor-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.forum-detail-cancel-btn {
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  color: #666;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.forum-detail-cancel-btn:hover {
+  background-color: #e9ecef;
+  border-color: #999;
+}
+
+/* 新留言高亮效果 */
+@keyframes highlightNewMessage {
+  0% {
+    background-color: rgba(1, 152, 88, 0.2);
+    transform: translateY(0);
+  }
+  100% {
+    background-color: white;
+    transform: translateY(0);
+  }
+}
+
+.highlight-new-message {
+  animation: highlightNewMessage 3s ease-out;
+}
+
+/* 確保動畫期間保持懸停效果 */
+.highlight-new-message:hover {
+  animation: none;
+  background-color: white;
+}
+
+.highlight-edited-message {
+  animation: highlightFade 3s ease-out;
+  position: relative;
+}
+
+.highlight-edited-message::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(100, 149, 237, 0.3);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes highlightFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.message-item {
+  position: relative;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
